@@ -3,15 +3,10 @@
 > High-level abstraction for selenium-webdriver
 
 **Features**:
-- Uses [Selenium@3](https://seleniumhq.wordpress.com/2016/10/13/selenium-3-0-out-now/) with [WebDriver](https://www.w3.org/TR/webdriver/)
-- Supports DOM API to explore page structure (via jsdom)
+- Built with [Selenium v3](https://seleniumhq.wordpress.com/2016/10/13/selenium-3-0-out-now/) and [W3C WebDriver](https://www.w3.org/TR/webdriver/)
+- Supports DOM API to explore page structure (via [jsdom](https://github.com/tmpvar/jsdom))
 - No setup: built in chrome support
 - Flexibility: integrates with any test framework
-
-## Install
-
-    $ npm i -D sweb
-    $ yarn add -D sweb
 
 ## Example
 
@@ -37,6 +32,13 @@ describe('smoke-tests', () => {
 })
 ```
 
+## Installation
+
+Requires node >= 6.9 (because of [selenium-webdriver](https://www.npmjs.com/package/selenium-webdriver#projected-support-schedule))
+
+    $ yarn add -D sweb
+    $ npm i -D sweb
+
 ## API
 
 ### new Browser()
@@ -51,6 +53,7 @@ Page instance has properties:
 - `title` - page title
 - `document` - similar to `window.document`, it's a [jsdom](https://github.com/tmpvar/jsdom) instance
   and supports all methods to work with DOM API.
+- `source` - page html source
 - `driver` - [WebDriver Instance](http://seleniumhq.github.io/selenium/docs/api/javascript/module/selenium-webdriver/lib/webdriver_exports_WebDriver.html)
 
 ### browser.quit()

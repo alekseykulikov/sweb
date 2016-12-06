@@ -26,8 +26,9 @@ export class Browser {
 class Page {
   constructor (driver, pageUrl, pageSource) {
     this.driver = driver
-    this.document = jsdom(pageSource)
     this.url = pageUrl
+    this.document = jsdom(pageSource)
+    this.source = pageSource
     this.title = this.document.title
   }
 }

@@ -13,5 +13,6 @@ describe('sweb', () => {
     expect(page.title).equal('Example Domain')
     expect(page.document.links).length(1)
     expect(page.document.querySelector('a').href).equal('http://www.iana.org/domains/example')
+    expect(page.source).contains('<!DOCTYPE html>')
   })
 })
