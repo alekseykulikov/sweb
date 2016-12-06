@@ -19,6 +19,8 @@
   },
   "dependencies": {
     "chromedriver": "^2.25.1",
+    "jsdom": "^9.8.3",
+    "normalize-url": "^1.8.0",
     "selenium-webdriver": "^3.0.1"
   },
   "devDependencies": {
