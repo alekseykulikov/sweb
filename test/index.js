@@ -21,4 +21,10 @@ describe('sweb', () => {
     await page.click('a')
     expect(page.url).equal('http://www.iana.org/domains/reserved')
   })
+
+  it('support type and wait', async () => {
+    const page = await browser.open('https://www.google.com')
+    await page.type('[name="q"]', 'selenium webdriver npm')
+    await page.waitFor('[href="https://www.npmjs.com/package/selenium-webdriver"]')
+  })
 })

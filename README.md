@@ -63,6 +63,14 @@ Load `url` in browser and return `Page` instance.
 
 Perform click event to `selector`.
 
+### await page.type(selector, text)
+
+Sent type command to input with `selector` with `text`.
+
+### await page.waitFor(selector)
+
+Wait for `selector` appears in html.
+
 ### browser.quit()
 
 Quit real browser.
