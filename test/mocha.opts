@@ -1,0 +1,5 @@
+--reporter spec
+--check-leaks
+--colors
+--timeout 20000
+--require babel-register
