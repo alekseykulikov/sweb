@@ -6,17 +6,31 @@
   "repository": "alekseykulikov/sweb",
   "author": "Aleksey Kulikov <alekseys.kulikov@gmail.com>",
   "license": "MIT",
+  "engines": {
+    "node": ">=6.9"
+  },
+  "files": [
+    "dist"
+  ],
   "scripts": {
+    "dev": "nodemon --watch src --quiet --exec 'yarn prepublish'",
+    "prepublish": "babel src --out-dir dist",
     "test": "eslint src"
+  },
+  "dependencies": {
+    "chromedriver": "^2.25.1",
+    "selenium-webdriver": "^3.0.1"
   },
   "devDependencies": {
     "babel-cli": "^6.18.0",
     "babel-core": "^6.18.2",
-    "babel-preset-latest": "^6.16.0",
+    "babel-plugin-transform-async-to-generator": "^6.16.0",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.18.0",
     "eslint": "^3.11.1",
     "eslint-config-standard": "^6.2.1",
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-promise": "^3.4.0",
-    "eslint-plugin-standard": "^2.0.1"
+    "eslint-plugin-standard": "^2.0.1",
+    "nodemon": "^1.11.0"
   }
 }
