@@ -11,7 +11,7 @@
 ## Example
 
 Smoke test for http://example.com
-with [mocha](https://mochajs.org/) and [chai](http://chaijs.com/).
+using [mocha](https://mochajs.org/) and [chai](http://chaijs.com/).
 
 ```js
 import { expect } from 'chai'
@@ -28,6 +28,9 @@ describe('smoke-tests', () => {
     expect(page.title).equal('Example Domain')
     expect(page.document.links).length(1)
     expect(page.document.querySelector('a').href).equal('http://www.iana.org/domains/example')
+
+    await page.click('a')
+    expect(page.url).equal('http://www.iana.org/domains/reserved')
   })
 })
 ```
@@ -45,20 +48,24 @@ Requires node >= 6.9 (because of [selenium-webdriver](https://www.npmjs.com/pack
 
 Creates new `Browser` browser.
 
-### browser.open(url)
+### await browser.open(url)
 
 Load `url` in browser and return `Page` instance.
-Page instance has properties:
-- `url` - current location origin
+
+`Page` instance has useful properties:
+- `url` - page url
+- `document` - similar to `window.document`, it's a [jsdom](https://github.com/tmpvar/jsdom) instance with support of all DOM API methods.
 - `title` - page title
-- `document` - similar to `window.document`, it's a [jsdom](https://github.com/tmpvar/jsdom) instance
-  and supports all methods to work with DOM API.
 - `source` - page html source
-- `driver` - [WebDriver Instance](http://seleniumhq.github.io/selenium/docs/api/javascript/module/selenium-webdriver/lib/webdriver_exports_WebDriver.html)
+- `driver` - [WebDriver instance](http://seleniumhq.github.io/selenium/docs/api/javascript/module/selenium-webdriver/lib/webdriver_exports_WebDriver.html)
+
+### await page.click(selector)
+
+Perform click event to `selector`.
 
 ### browser.quit()
 
-Quit browser.
+Quit real browser.
 
 ## LICENSE
 

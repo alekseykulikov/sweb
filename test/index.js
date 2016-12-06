@@ -15,4 +15,10 @@ describe('sweb', () => {
     expect(page.document.querySelector('a').href).equal('http://www.iana.org/domains/example')
     expect(page.source).contains('<!DOCTYPE html>')
   })
+
+  it('support url clicks', async () => {
+    const page = await browser.open('example.com')
+    await page.click('a')
+    expect(page.url).equal('http://www.iana.org/domains/reserved')
+  })
 })
