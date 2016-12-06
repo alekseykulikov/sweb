@@ -16,15 +16,15 @@ describe('sweb', () => {
     expect(page.source).contains('<!DOCTYPE html>')
   })
 
-  it('support url clicks', async () => {
+  it('supports url clicks', async () => {
     const page = await browser.open('example.com')
     await page.click('a')
     expect(page.url).equal('http://www.iana.org/domains/reserved')
   })
 
-  it('support type and wait', async () => {
+  it('supports type and wait', async () => {
     const page = await browser.open('https://www.google.com')
-    await page.type('[name="q"]', 'selenium webdriver npm')
+    await page.type('[name="q"]', 'selenium webdriver npm', { enter: true })
     await page.waitFor('[href="https://www.npmjs.com/package/selenium-webdriver"]')
   })
 })

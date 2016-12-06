@@ -1,9 +1,12 @@
-import { By, until } from 'selenium-webdriver'
+import { Key, By, until } from 'selenium-webdriver'
 import { jsdom } from 'jsdom'
+import { join } from 'path'
+import { writeFileSync as writeFile } from 'fs'
 
 export class Page {
-  constructor (driver) {
-    this.driver = driver
+  constructor (browser) {
+    this.browser = browser
+    this.driver = browser.driver
   }
 
   async load () {
@@ -27,9 +30,9 @@ export class Page {
     await this.load()
   }
 
-  async type (selector, text) {
+  async type (selector, text, { enter = false } = {}) {
     const el = await this.driver.findElement(By.css(selector))
-    await el.sendKeys(text)
+    await el.sendKeys(text + (enter ? Key.ENTER : ''))
     await this.load()
   }
 
@@ -37,5 +40,10 @@ export class Page {
     await this.driver.wait(until.elementLocated(By.css(selector)), delay)
     await this.load()
     return true
+  }
+
+  async screenshot (name = 'screenshot') {
+    const base64Data = await this.driver.takeScreenshot()
+    writeFile(join(this.browser.tmpDir, `${name}.png`), base64Data, 'base64')
   }
 }
