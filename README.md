@@ -1,5 +1,9 @@
 # sweb
 
+[![](https://travis-ci.org/alekseykulikov/sweb.png)](https://travis-ci.org/alekseykulikov/sweb)
+[![](https://img.shields.io/npm/v/sweb.svg)](https://npmjs.org/package/sweb)
+[![](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
+
 > High-level abstraction for selenium-webdriver
 
 **Features**:
