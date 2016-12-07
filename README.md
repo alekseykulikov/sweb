@@ -9,8 +9,8 @@
 **Features**:
 - Built with [Selenium v3](https://seleniumhq.wordpress.com/2016/10/13/selenium-3-0-out-now/) and [W3C WebDriver](https://www.w3.org/TR/webdriver/)
 - Supports DOM API to explore page structure (via [jsdom](https://github.com/tmpvar/jsdom))
-- No setup: built in chrome support
-- Flexibility: integrates with any test framework
+- No setup: built in Chrome support (via [chromedriver](https://github.com/giggio/node-chromedriver))
+- Flexibility: integrates with any test framework or node script.
 
 ## Example
 
@@ -32,7 +32,6 @@ describe('smoke-tests', () => {
     expect(page.title).equal('Example Domain')
     expect(page.document.links).length(1)
     expect(page.document.querySelector('a').href).equal('http://www.iana.org/domains/example')
-
     await page.click('a')
     expect(page.url).equal('http://www.iana.org/domains/reserved')
   })
@@ -69,11 +68,24 @@ Perform click event to `selector`.
 
 ### await page.type(selector, text)
 
-Sent type command to input with `selector` with `text`.
+Send user type input (combination of keydown, keypress, keyup for each character) to `selector` with `text`.
+To emulate special keys like ENTER or F12 use [`Key`](http://seleniumhq.github.io/selenium/docs/api/javascript/module/selenium-webdriver/index_exports_Key.html).
 
-### await page.waitFor(selector)
+```js
+import { Browser, Key } from 'sweb'
+
+const browser = new Browser()
+const page = await browser.open('https://www.google.com')
+await page.type('[name="q"]', `selenium webdriver npm${Key.ENTER}`)
+```
+
+### await page.waitFor(selector, delay = 2000)
 
 Wait for `selector` appears in html.
+
+### await page.screenshot(name)
+
+Make screenshot of the page and store to `${cwd}/tmp/${name}.png`.
 
 ### browser.quit()
 

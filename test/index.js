@@ -1,6 +1,6 @@
 /* eslint-env mocha */
 import { expect } from 'chai'
-import { Browser } from '../src'
+import { Browser, Key } from '../src'
 
 describe('sweb', () => {
   let browser
@@ -24,7 +24,7 @@ describe('sweb', () => {
 
   it('supports type and wait', async () => {
     const page = await browser.open('https://www.google.com')
-    await page.type('[name="q"]', 'selenium webdriver npm', { enter: true })
+    await page.type('[name="q"]', `selenium webdriver npm${Key.ENTER}`)
     await page.waitFor('[href="https://www.npmjs.com/package/selenium-webdriver"]')
   })
 })

@@ -21,3 +21,5 @@ export class Browser {
     this.driver.quit()
   }
 }
+
+export { Key } from 'selenium-webdriver'

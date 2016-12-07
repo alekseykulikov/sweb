@@ -1,4 +1,4 @@
-import { Key, By, until } from 'selenium-webdriver'
+import { By, until } from 'selenium-webdriver'
 import { jsdom } from 'jsdom'
 import { join } from 'path'
 import { writeFileSync as writeFile } from 'fs'
@@ -30,9 +30,9 @@ export class Page {
     await this.load()
   }
 
-  async type (selector, text, { enter = false } = {}) {
+  async type (selector, text) {
     const el = await this.driver.findElement(By.css(selector))
-    await el.sendKeys(text + (enter ? Key.ENTER : ''))
+    await el.sendKeys(text)
     await this.load()
   }
 
