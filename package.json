@@ -1,6 +1,6 @@
 {
   "name": "sweb",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "High-level abstraction for selenium-webdriver",
   "main": "dist/index.js",
   "repository": "alekseykulikov/sweb",
