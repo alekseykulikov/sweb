@@ -53,7 +53,7 @@ export class Page {
 
   async screenshot (name = 'screenshot') {
     const base64Data = await this.driver.takeScreenshot()
-    await ensureDir(this.browser.tmpDir)
-    await writeFile(join(this.browser.tmpDir, `${name}.png`), base64Data, 'base64')
+    await ensureDir(this.browser.workDir) // TODO: do it only once
+    await writeFile(join(this.browser.workDir, `${name}.png`), base64Data, 'base64')
   }
 }

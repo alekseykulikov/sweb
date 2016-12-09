@@ -5,9 +5,9 @@ import { join } from 'path'
 import { Page } from './page'
 
 export class Browser {
-  constructor ({ tmpDir, screenhostOnError } = {}) {
+  constructor ({ workDir, screenhostOnError } = {}) {
     this.driver = new Builder().forBrowser('chrome').build()
-    this.tmpDir = tmpDir || join(process.cwd(), 'tmp')
+    this.workDir = workDir || join(process.cwd(), '.sweb')
     this.screenhostOnError = screenhostOnError || false
   }
 

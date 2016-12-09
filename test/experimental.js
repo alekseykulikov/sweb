@@ -5,17 +5,17 @@ import { remove as removeDir, readdir } from 'fs-promise'
 import { Browser } from '../src'
 
 describe('sweb/experimental', () => {
-  const tmpDir = join(process.cwd(), 'tmp')
+  const workDir = join(process.cwd(), '.sweb')
   let browser
   after(async () => {
     await browser.quit()
-    await removeDir(tmpDir)
+    await removeDir(workDir)
   })
 
   it('waitFor throws a custom error and save screenshot', async () => {
     browser = new Browser({ screenhostOnError: true })
     expect(browser.screenhostOnError).true
-    expect(browser.tmpDir).equal(tmpDir)
+    expect(browser.workDir).equal(workDir)
 
     const page = await browser.open('example.com')
     try {
@@ -23,7 +23,7 @@ describe('sweb/experimental', () => {
       throw new Error('waitFor should throw an erro')
     } catch (err) {
       expect(err.message).equal('Wait timed out for ".some-selector" after 500ms')
-      expect(await readdir(tmpDir)).eql(['screenshot.png'])
+      expect(await readdir(workDir)).eql(['screenshot.png'])
     }
   })
 })
