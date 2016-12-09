@@ -17,8 +17,8 @@ export class Browser {
     return page
   }
 
-  quit () {
-    this.driver.quit()
+  async quit () {
+    await this.driver.quit()
   }
 }
 

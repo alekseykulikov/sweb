@@ -48,7 +48,7 @@ Requires node >= 6.9 (because of [selenium-webdriver](https://www.npmjs.com/pack
 
 ### new Browser()
 
-Creates new `Browser` browser.
+Creates new `Browser` instance.
 
 ### await browser.open(url)
 
@@ -60,6 +60,10 @@ Load `url` in browser and return `Page` instance.
 - `title` - page title
 - `source` - page html source
 - `driver` - [WebDriver instance](http://seleniumhq.github.io/selenium/docs/api/javascript/module/selenium-webdriver/lib/webdriver_exports_WebDriver.html)
+
+### await browser.quit()
+
+Quit real browser.
 
 ### await page.click(selector)
 
@@ -85,10 +89,6 @@ Wait for `selector` appears in html.
 ### await page.screenshot(name)
 
 Make screenshot of the page and store to `${cwd}/tmp/${name}.png`.
-
-### browser.quit()
-
-Quit real browser.
 
 ## LICENSE
 

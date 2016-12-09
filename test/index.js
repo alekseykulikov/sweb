@@ -5,7 +5,7 @@ import { Browser, Key } from '../src'
 describe('sweb', () => {
   let browser
   before(() => { browser = new Browser() })
-  after(() => { browser.quit() })
+  after(() => browser.quit())
 
   it('opens example.com', async () => {
     const page = await browser.open('example.com')
