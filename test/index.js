@@ -2,7 +2,7 @@
 import { expect } from 'chai'
 import { Browser, Key } from '../src'
 
-describe('sweb', () => {
+describe('sweb/core', () => {
   let browser
   before(() => { browser = new Browser() })
   after(() => browser.quit())
@@ -26,5 +26,6 @@ describe('sweb', () => {
     const page = await browser.open('https://www.google.com')
     await page.type('[name="q"]', `selenium webdriver npm${Key.ENTER}`)
     await page.waitFor('[href="https://www.npmjs.com/package/selenium-webdriver"]')
+    expect(page.document.querySelectorAll('.g')).length(10)
   })
 })

@@ -36,10 +36,13 @@ export class Page {
     await this.load()
   }
 
-  async waitFor (selector, delay = 2000) {
-    await this.driver.wait(until.elementLocated(By.css(selector)), delay)
+  async waitFor (selector, delay = 10000) {
+    try {
+      await this.driver.wait(until.elementLocated(By.css(selector)), delay)
+    } catch (err) {
+      throw new Error(`Wait timed out for "${selector}" after ${delay}ms`)
+    }
     await this.load()
-    return true
   }
 
   async screenshot (name = 'screenshot') {
