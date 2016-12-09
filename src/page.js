@@ -1,7 +1,7 @@
 import { By, until } from 'selenium-webdriver'
 import { jsdom } from 'jsdom'
 import { join } from 'path'
-import { writeFileSync as writeFile } from 'fs'
+import { writeFile, ensureDir } from 'fs-promise'
 
 export class Page {
   constructor (browser) {
@@ -47,6 +47,7 @@ export class Page {
 
   async screenshot (name = 'screenshot') {
     const base64Data = await this.driver.takeScreenshot()
-    writeFile(join(this.browser.tmpDir, `${name}.png`), base64Data, 'base64')
+    await ensureDir(this.browser.tmpDir)
+    await writeFile(join(this.browser.tmpDir, `${name}.png`), base64Data, 'base64')
   }
 }
