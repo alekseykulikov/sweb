@@ -24,6 +24,9 @@ export class Page {
     const el = await this.driver.findElement(By.css(selector))
     const { height, width } = await el.getSize()
     if (height === 0 || width === 0) {
+      if (this.browser.screenhostOnError) {
+        await this.screenshot()
+      }
       throw new Error(`"${selector}" is not visible: {height:${height}px,width:${width}px}`)
     }
     await this.driver.actions().click(el).perform()
@@ -40,6 +43,9 @@ export class Page {
     try {
       await this.driver.wait(until.elementLocated(By.css(selector)), delay)
     } catch (err) {
+      if (this.browser.screenhostOnError) {
+        await this.screenshot()
+      }
       throw new Error(`Wait timed out for "${selector}" after ${delay}ms`)
     }
     await this.load()

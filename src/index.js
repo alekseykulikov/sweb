@@ -5,9 +5,10 @@ import { join } from 'path'
 import { Page } from './page'
 
 export class Browser {
-  constructor () {
+  constructor ({ tmpDir, screenhostOnError } = {}) {
     this.driver = new Builder().forBrowser('chrome').build()
-    this.tmpDir = join(process.cwd(), 'tmp')
+    this.tmpDir = tmpDir || join(process.cwd(), 'tmp')
+    this.screenhostOnError = screenhostOnError || false
   }
 
   async open (url) {

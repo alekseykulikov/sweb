@@ -46,9 +46,13 @@ Requires node >= 6.9 (because of [selenium-webdriver](https://www.npmjs.com/pack
 
 ## API
 
-### new Browser()
+### new Browser(opts = {})
 
 Creates new `Browser` instance.
+
+Available options:
+- `screenhostOnError` (default: false) - make automatic screenshot when `sweb` throws a custom error, for example on failed waitFor or click.
+- `tmpDir` (default: `${cwd}/tmp`) - specify screenshot folder. If folder does not exist, it will be created automatically.
 
 ### await browser.open(url)
 
@@ -88,7 +92,7 @@ Wait for `selector` appears in html.
 
 ### await page.screenshot(name)
 
-Make screenshot of the page and store to `${cwd}/tmp/${name}.png`.
+Make screenshot of the page and store to `browser.tmpDir/${name}.png`.
 
 ## LICENSE
 
