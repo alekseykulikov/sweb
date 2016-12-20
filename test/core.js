@@ -4,7 +4,7 @@ import { Browser, Key } from '../src'
 
 describe('sweb/core', () => {
   let browser
-  before(() => { browser = new Browser() })
+  before(() => { browser = new Browser({ screenhostOnError: true }) })
   after(() => browser.quit())
 
   it('opens example.com', async () => {
@@ -25,7 +25,7 @@ describe('sweb/core', () => {
   it('supports type and wait', async () => {
     const page = await browser.open('https://www.google.com')
     await page.type('[name="q"]', `selenium webdriver npm${Key.ENTER}`)
-    await page.waitFor('[href="https://www.npmjs.com/package/selenium-webdriver"]')
+    await page.waitFor('#resultStats')
     expect(page.document.querySelectorAll('.g')).length(10)
   })
 })

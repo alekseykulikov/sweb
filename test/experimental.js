@@ -1,15 +1,15 @@
 /* eslint-env mocha */
 import { expect } from 'chai'
 import { join } from 'path'
-import { remove as removeDir, readdir } from 'fs-promise'
+import { remove as removedir, readdir } from 'fs-promise'
 import { Browser } from '../src'
 
 describe('sweb/experimental', () => {
   const workDir = join(process.cwd(), '.sweb')
   let browser
   after(async () => {
-    await browser.quit()
-    await removeDir(workDir)
+    if (browser) await browser.quit()
+    await removedir(workDir)
   })
 
   it('waitFor throws a custom error and save screenshot', async () => {

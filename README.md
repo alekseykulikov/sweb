@@ -53,7 +53,7 @@ Creates new `Browser` instance.
 Available options:
 - `screenhostOnError` (default: false) - make automatic screenshot when `sweb` throws a custom error, for example on failed waitFor or click.
 - `workDir` (default: `${cwd}/.sweb`) - specify directory for sweb's logs and screenshots. If folder does not exist, it will be created automatically.
-- `driver` - custom build of WebDriver, useful for Browserstack/Saucelabs integration.
+- `driver` - custom build of WebDriver, useful for running different browsers or for Browserstack/Saucelabs integration. Check [custom drivers](#custom-drivers) section for more details.
 
 ### await browser.open(url)
 
@@ -94,6 +94,21 @@ Wait for `selector` appears in html.
 ### await page.screenshot(name)
 
 Make screenshot of the page and store to `${browser.workDir}/${name}.png`.
+
+## Custom drivers
+
+`driver` option allows to pass any custom `selenium-webdriver` configuration.
+
+### Use Firefox with geckodriver
+
+```js
+import 'geckodriver'
+import { Browser, Builder } from 'sweb'
+
+const driver = new Builder().forBrowser('firefox').build()
+const browser = new Browser({ driver })
+const page = await browser.open('http://example.com')
+```
 
 ### Integration with Browserstack
 
