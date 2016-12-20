@@ -6,7 +6,7 @@
 - Built with [Selenium v3](https://seleniumhq.wordpress.com/2016/10/13/selenium-3-0-out-now/) and [W3C WebDriver](https://www.w3.org/TR/webdriver/)
 - Supports DOM API to explore page structure (via [jsdom](https://github.com/tmpvar/jsdom))
 - No setup: built in Chrome support (via [chromedriver](https://github.com/giggio/node-chromedriver))
-- Flexibility: integrates with any test framework or node script.
+- Flexibility: integrates with any test framework, node script, and selenium cloud provider.
 
 ## Example
 
@@ -97,9 +97,9 @@ Make screenshot of the page and store to `${browser.workDir}/${name}.png`.
 
 ## Custom drivers
 
-`driver` option allows to pass any custom `selenium-webdriver` configuration.
+`driver` option allows to pass custom `selenium-webdriver` configuration.
 
-### Use Firefox with geckodriver
+### Firefox with geckodriver
 
 ```js
 import 'geckodriver'
