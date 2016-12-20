@@ -1,12 +1,12 @@
 import 'chromedriver'
-import { Builder } from 'selenium-webdriver'
+import { Key, Builder } from 'selenium-webdriver'
 import normalizeUrl from 'normalize-url'
 import { join } from 'path'
 import { Page } from './page'
 
 export class Browser {
-  constructor ({ workDir, screenhostOnError } = {}) {
-    this.driver = new Builder().forBrowser('chrome').build()
+  constructor ({ workDir, screenhostOnError, driver } = {}) {
+    this.driver = driver || new Builder().forBrowser('chrome').build()
     this.workDir = workDir || join(process.cwd(), '.sweb')
     this.screenhostOnError = screenhostOnError || false
   }
@@ -23,4 +23,4 @@ export class Browser {
   }
 }
 
-export { Key } from 'selenium-webdriver'
+export { Key, Builder }

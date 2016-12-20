@@ -1,8 +1,5 @@
 # sweb [![](https://circleci.com/gh/alekseykulikov/sweb.svg?style=svg)](https://circleci.com/gh/alekseykulikov/sweb)
 
-[![](https://img.shields.io/npm/v/sweb.svg)](https://npmjs.org/package/sweb)
-[![](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
-
 > High-level abstraction for selenium-webdriver
 
 **Features**:
@@ -39,6 +36,9 @@ describe('smoke-tests', () => {
 
 ## Installation
 
+[![](https://img.shields.io/npm/v/sweb.svg)](https://npmjs.org/package/sweb)
+[![](http://img.shields.io/npm/dm/sweb.svg)](https://npmjs.org/package/sweb)
+
 Requires node >= 6.9 (because of [selenium-webdriver](https://www.npmjs.com/package/selenium-webdriver#projected-support-schedule))
 
     $ yarn add -D sweb
@@ -53,6 +53,7 @@ Creates new `Browser` instance.
 Available options:
 - `screenhostOnError` (default: false) - make automatic screenshot when `sweb` throws a custom error, for example on failed waitFor or click.
 - `workDir` (default: `${cwd}/.sweb`) - specify directory for sweb's logs and screenshots. If folder does not exist, it will be created automatically.
+- `driver` - custom build of WebDriver, useful for Browserstack/Saucelabs integration.
 
 ### await browser.open(url)
 
@@ -93,6 +94,46 @@ Wait for `selector` appears in html.
 ### await page.screenshot(name)
 
 Make screenshot of the page and store to `${browser.workDir}/${name}.png`.
+
+### Integration with Browserstack
+
+```js
+import { Browser, Builder } from 'sweb'
+
+const driver = new Builder()
+  .usingServer('http://hub-cloud.browserstack.com/wd/hub')
+  .withCapabilities({
+    'browserName': 'chrome',
+    'browserstack.user': browserStackUser,
+    'browserstack.key': browserStackKey,
+    'browserstack.debug': 'true',
+    'build': 'First build'
+  })
+  .build()
+
+const browser = new Browser({ driver })
+const page = await browser.open('https://www.google.com')  
+```
+
+### Integration with Saucelabs
+
+```js
+import { Browser, Builder } from 'sweb'
+
+const driver = new Builder()
+  .usingServer('http://' + username + ':' + accessKey + '@ondemand.saucelabs.com:80/wd/hub')
+  .withCapabilities({
+    'browserName': 'chrome',
+    'platform': 'Windows XP',
+    'version': '43.0',
+    username,
+    accessKey
+  })
+  .build()
+
+const browser = new Browser({ driver })
+const page = await browser.open('http://example.com')
+```
 
 ## LICENSE
 
